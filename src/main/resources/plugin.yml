@@ -1,0 +1,4 @@
+name: ChatChannels
+version: ${project.version}
+main: me.ryans1230.chatchannels.ChatChannels
+description: All staff, Admins, Developers, Owners, and a network wide chat channel plugin
