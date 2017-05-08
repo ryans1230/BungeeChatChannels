@@ -9,6 +9,7 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.config.Configuration;
 
 import java.io.IOException;
+import java.util.Map;
 
 import static me.ryans1230.chatchannels.ChatChannels.Channel.*;
 import static me.ryans1230.chatchannels.ChatChannels.Settings.*;
@@ -24,6 +25,10 @@ public class SettingsCommand extends Command {
     public void execute(CommandSender sender, String[] args) {
         if(args.length == 0) {
             help(sender);
+            sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&6Here are all the current settings:")));
+            for(Map.Entry<Enum, Boolean> e1 : plugin.settings.entrySet()) {
+                sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&6" + e1.getKey().toString() + " : " + e1.getValue())));
+            }
         } else if(args.length == 1) {
             String setting = args[0];
             boolean value = false;
