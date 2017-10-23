@@ -27,6 +27,9 @@ public class NetworkChatCommand extends Command {
             String username;
             if (sender instanceof ProxiedPlayer) {
                 username = ((ProxiedPlayer) sender).getDisplayName();
+                if(args.length == 0) {
+                    plugin.player_storage.put(((ProxiedPlayer) sender).getUniqueId(), ChatChannels.Channel.NETWORK);
+                }
             } else {
                 if (plugin.settings.get(ALLOW_CONSOLE)) {
                     username = "CONSOLE";

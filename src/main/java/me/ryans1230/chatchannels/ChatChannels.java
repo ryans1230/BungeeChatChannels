@@ -12,12 +12,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static me.ryans1230.chatchannels.ChatChannels.Channel.*;
 import static me.ryans1230.chatchannels.ChatChannels.Settings.*;
 
 public final class ChatChannels extends Plugin {
     public Map<Enum, Boolean> settings = new HashMap<>();
+    public Map<UUID, Channel> player_storage = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -34,6 +36,7 @@ public final class ChatChannels extends Plugin {
         settings.put(ADMIN, ConfigUtil.c.getBoolean("toggles.admin"));
         settings.put(MODERATOR, ConfigUtil.c.getBoolean("toggles.moderator"));
         settings.put(NETWORK, ConfigUtil.c.getBoolean("toggles.network"));
+        settings.put(NO_CMD, ConfigUtil.c.getBoolean("toggles.noCommand"));
 
             //Register commands
         getProxy().getPluginManager().registerCommand(this, new OwnerChatCommand(this));
@@ -42,6 +45,7 @@ public final class ChatChannels extends Plugin {
         getProxy().getPluginManager().registerCommand(this, new ModeratorChatCommand(this));
         getProxy().getPluginManager().registerCommand(this, new NetworkChatCommand(this));
         getProxy().getPluginManager().registerCommand(this, new SettingsCommand(this));
+        getProxy().getPluginManager().registerListener(this, new NoCommandListener(this));
     }
 
     @Override
@@ -58,6 +62,7 @@ public final class ChatChannels extends Plugin {
             config.set("toggles.admin", settings.get(ADMIN));
             config.set("toggles.moderator", settings.get(MODERATOR));
             config.set("toggles.network", settings.get(NETWORK));
+            config.set("toggles.noCommand", settings.get(NO_CMD));
             ConfigUtil.provider.save(config, ConfigUtil.conf);
         } catch (IOException e) {
             getLogger().info("Error saving the configuration!");
@@ -65,7 +70,7 @@ public final class ChatChannels extends Plugin {
         }
     }
     public enum Channel {OWNER,DEVELOPER,ADMIN,MODERATOR,NETWORK}
-    public enum Settings {ALLOW_CONSOLE, SEND_DISABLED, LOG_MESSAGES}
+    public enum Settings {ALLOW_CONSOLE, SEND_DISABLED, LOG_MESSAGES, NO_CMD}
     public void logger(Channel channel, String author, String message) {
         Date now = new Date();
         SimpleDateFormat fileDate = new SimpleDateFormat("MM-dd-yyyy");

@@ -6,12 +6,12 @@
 
     <groupId>me.ryans1230</groupId>
     <artifactId>ChatChannels</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>ChatChannels</name>
 
-    <description>All staff, Admins, Developers, Owners, and a network wide chat channel plugin</description>
+    <description>A staff, Admins, Developers, Owners, and a network wide chat channel plugin.</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.11-SNAPSHOT</version>
+            <version>1.12-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

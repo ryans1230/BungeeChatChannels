@@ -9,12 +9,12 @@ import java.io.IOException;
 
 public class ConfigUtil {
     private ChatChannels plugin;
-    public ConfigUtil(ChatChannels plugin) {this.plugin = plugin;}
+    ConfigUtil(ChatChannels plugin) {this.plugin = plugin;}
     public static Configuration c;
     public static ConfigurationProvider provider = YamlConfiguration.getProvider(YamlConfiguration.class);
     public static File conf;
 
-    public synchronized void createConfig() {
+    synchronized void createConfig() {
         File f = plugin.getDataFolder();
         conf = new File(f, "config.yml");
         try {
@@ -32,6 +32,8 @@ public class ConfigUtil {
                 config.set("toggles.admin", true);
                 config.set("toggles.moderator", true);
                 config.set("toggles.network", true);
+
+                config.set("toggles.noCommand", false);
             }
             if(config.getSection("prefix").getKeys().isEmpty()) {
                 config.set("prefix.owner", "&r[&cOwner Chat&r] &c{author}&r: &c{message}");
