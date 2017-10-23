@@ -63,6 +63,7 @@ public class SettingsCommand extends Command {
                     break;
                 case "noCommand":
                     value = plugin.settings.get(NO_CMD);
+                    break;
                 default:
                     help(sender);
                     sent = false;
@@ -198,6 +199,6 @@ public class SettingsCommand extends Command {
         sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes(
                 '&', "&cUsage: /<command> <setting> true/false")));
         sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes(
-                '&', "&cSettings: owner | developer | admin | moderator | network | console | log | sendDisabled")));
+                '&', "&cSettings: owner | developer | admin | moderator | network | console | log | sendDisabled | sendDisabledMessages | noCommand")));
     }
 }
