@@ -26,14 +26,21 @@ public class AdminChatCommand extends Command {
             if(sender instanceof ProxiedPlayer) {
                 username = ((ProxiedPlayer) sender).getDisplayName();
                 if(args.length == 0) {
+                    if(plugin.player_storage.containsKey(((ProxiedPlayer) sender).getUniqueId())) {
+                        if(plugin.player_storage.get(((ProxiedPlayer) sender).getUniqueId()).equals(ADMIN)) {
+                            plugin.player_storage.remove(((ProxiedPlayer) sender).getUniqueId());
+                            sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&6You have toggled Admin chat off. You're message will now be sent to the server chat.")));
+                        }
+                    }
                     plugin.player_storage.put(((ProxiedPlayer) sender).getUniqueId(), ChatChannels.Channel.ADMIN);
+                    sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&4You have toggled Admin chat on. You're message will now be sent to the Admin chat.")));
                 }
             } else {
                 if(plugin.settings.get(ALLOW_CONSOLE)) {
                     username = "CONSOLE";
                 } else {
                     sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes(
-                            '&', "&You must be a player to use this command!")));
+                            '&', "&cYou must be a player to use this command!")));
                     return;
                 }
             }

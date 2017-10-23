@@ -28,6 +28,13 @@ public class NetworkChatCommand extends Command {
             if (sender instanceof ProxiedPlayer) {
                 username = ((ProxiedPlayer) sender).getDisplayName();
                 if(args.length == 0) {
+                    if(plugin.player_storage.containsKey(((ProxiedPlayer) sender).getUniqueId())) {
+                        if(plugin.player_storage.get(((ProxiedPlayer) sender).getUniqueId()).equals(NETWORK)) {
+                            plugin.player_storage.remove(((ProxiedPlayer) sender).getUniqueId());
+                            sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&6You have toggled Network chat off. You're message will now be sent to the server chat.")));
+                        }
+                    }
+                    sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&4You have toggled Network chat on. You're message will now be sent to the Admin chat.")));
                     plugin.player_storage.put(((ProxiedPlayer) sender).getUniqueId(), ChatChannels.Channel.NETWORK);
                 }
             } else {
