@@ -5,10 +5,12 @@ import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
+import static net.md_5.bungee.event.EventPriority.HIGHEST;
+
 public class NoCommandListener implements Listener {
     private ChatChannels plugin;
     NoCommandListener(ChatChannels plugin) {this.plugin = plugin;}
-    @EventHandler
+    @EventHandler (priority = HIGHEST)
     public void onChat(ChatEvent e) {
         if (!plugin.settings.get(ChatChannels.Settings.NO_CMD)) { return; }
         if(e.isCommand()) { return; }
@@ -27,7 +29,7 @@ public class NoCommandListener implements Listener {
                 plugin.getProxy().getPluginManager().dispatchCommand(p, "ac " + e.getMessage());
                 break;
             case MODERATOR:
-                plugin.getProxy().getPluginManager().dispatchCommand(p, "mc " + e.getMessage());
+                plugin.getProxy().getPluginManager().dispatchCommand(p, "sc " + e.getMessage());
                 break;
             case NETWORK:
                 plugin.getProxy().getPluginManager().dispatchCommand(p, "nc " + e.getMessage());
