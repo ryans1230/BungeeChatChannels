@@ -56,7 +56,7 @@ public final class ChatChannels extends Plugin {
             Configuration config = ConfigUtil.provider.load(ConfigUtil.conf);
             config.set("toggles.allowConsole", settings.get(ALLOW_CONSOLE));
             config.set("toggles.sendDisabledMessages", settings.get(SEND_DISABLED));
-            config.set("toggles.log_Messages", settings.get(LOG_MESSAGES));
+            config.set("toggles.logMessages", settings.get(LOG_MESSAGES));
             config.set("toggles.owner", settings.get(OWNER));
             config.set("toggles.developer", settings.get(DEVELOPER));
             config.set("toggles.admin", settings.get(ADMIN));
