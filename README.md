@@ -12,7 +12,8 @@ Here is the configuration file as it is initially loaded on first run (with adde
 toggles:
   allowConsole: false     #This option allows the console to interact with players via the channels
   sendDisabledMessages: false     #This option will send a message saying the channel is disabled
-  logMessages     #This option toggles the logging of all messages
+  logMessages:true     #This option toggles the logging of all messages
+  noCommand: false     #This option allows channels to be entered and messages sent without the command
 
 #This part is for each individual channel, which may be enabled/disabled separate of the other channels
   owner: true
