@@ -13,6 +13,7 @@ public class NoCommandListener implements Listener {
     @EventHandler (priority = HIGHEST)
     public void onChat(ChatEvent e) {
         if (!plugin.settings.get(ChatChannels.Settings.NO_CMD)) { return; }
+        if(e.getMessage().startsWith("/")) { return; }
         ProxiedPlayer p = (ProxiedPlayer) e.getSender();
         if (p == null) { return; }
         if (!plugin.player_storage.containsKey(p.getUniqueId())) { return; }
