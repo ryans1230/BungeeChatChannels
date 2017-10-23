@@ -30,10 +30,12 @@ public class DeveloperChatCommand extends Command {
                         if(plugin.player_storage.get(((ProxiedPlayer) sender).getUniqueId()).equals(DEVELOPER)) {
                             plugin.player_storage.remove(((ProxiedPlayer) sender).getUniqueId());
                             sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&6You have toggled Developer chat off. You're message will now be sent to the server chat.")));
+                            return;
                         }
                     }
                     sender.sendMessage(TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', "&4You have toggled Developer chat on. You're message will now be sent to the Admin chat.")));
                     plugin.player_storage.put(((ProxiedPlayer) sender).getUniqueId(), ChatChannels.Channel.DEVELOPER);
+                    return;
                 }
             } else {
                 if(plugin.settings.get(ALLOW_CONSOLE)) {
